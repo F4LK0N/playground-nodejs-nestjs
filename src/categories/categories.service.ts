@@ -1,14 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { Category } from './entities/category.entity';
+import { CategoryInterface } from './interfaces/category.interface';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 
 @Injectable()
 export class CategoriesService {
-  private readonly categories: Category[] = [];
+  private readonly categories: CategoryInterface[] = [];
 
   create(createCategoryDto: CreateCategoryDto) {
+    createCategoryDto.id   = '' + (this.categories.length + 1);
+    createCategoryDto.url  = 'url-test-' + createCategoryDto.id;
+    createCategoryDto.name = 'Name Test ' + createCategoryDto.id;
     this.categories.push(createCategoryDto);
+    return this.categories;
   }
 
   findAll() {
@@ -16,7 +21,7 @@ export class CategoriesService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} category`;
+    return this.categories[id - 1];
   }
 
   update(id: number, updateCategoryDto: UpdateCategoryDto) {
