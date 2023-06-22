@@ -32,6 +32,6 @@ export class CategoriesService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} category`;
+    this.categories.splice(id - 1, 1);
   }
 }
