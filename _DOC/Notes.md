@@ -1,13 +1,35 @@
+# NEST JS #
 
+
+## SETUP ##
 https://docs.nestjs.com/
 
-
-## INSTALL
 ```shell
 npm i -g @nestjs/cli
+nest new project-name
+npm install
+npm start
 ```
 
-## CREATE PROJECT
+
+## CONTROLLERS ##
+https://docs.nestjs.com/controllers
+
+Create a CRUD:
 ```shell
-nest new project-name
+nest g resource resource-name
 ```
+
+Controller example:
+```javascript
+  import { Controller, Get } from '@nestjs/common';
+
+  @Controller('cats')
+  export class CatsController {
+    @Get()
+    findAll(): string {
+      return 'This action returns all cats';
+    }
+  }
+```
+
